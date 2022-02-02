@@ -1,0 +1,40 @@
+---
+# EXAMPLE (/etc/motd)
+# Details what will be shown can be found in templates/etc/motd.j2
+# ---------------------------------------------------------------
+# This system is managed by Ansible
+# ---------------------------------------------------------------
+#
+# System:
+#   Hostname:     default-2.12-debian9
+#   FQDN:         default-2.12-debian9
+#   Distribution: Debian
+#   - Version:    9.13
+#   - Release:    stretch
+#   Virtual:      Yes
+#   - Type:       docker
+#
+#   CPUs:         8
+#   Memory:       31.3GB
+#   Swap:         24.0GB
+#
+#   Kernel:       5.15.18-200.fc35.x86_64
+#   Timezone:     UTC(+0000)
+#
+# Network:
+#   DNS Search:    XXX.tld
+#   DNS Server(s): 8.8.8.8
+#
+# Interfaces:
+#   Interface: eth0
+#     ip: 172.17.0.2
+#     mac: 02:42:ac:11:00:02
+#   Interface: lo
+#     ip: 127.0.0.1
+#
+# Mounts:
+#   Mount: /dev/mapper/luks-XXX(/etc/hosts)(X.XGB)
+#   Mount: /dev/mapper/luks-XXX(/etc/resolv.conf)(X.XGB)
+#   Mount: /dev/mapper/luks-XXX(/etc/hostname)(X.XGB)
+#
+# ---------------------------------------------------------------
