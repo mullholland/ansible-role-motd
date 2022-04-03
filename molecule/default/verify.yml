@@ -6,7 +6,7 @@
 
   tasks:
     - name: SmokeTests
-      debug:
+      ansible.builtin.debug:
         msg:
           - "ansible_version => {{ansible_version}}"
           - "ansible_distribution => {{ ansible_distribution }}"
@@ -15,7 +15,7 @@
           - "ansible_system  => {{ ansible_system }}"
 
     - name: "Test if /etc/motd exists"
-      lineinfile:
+      ansible.builtin.lineinfile:
         name: '/etc/motd'
         line: '             This system is managed by Ansible'
         state: present
