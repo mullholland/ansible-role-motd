@@ -6,7 +6,10 @@
     owner: "root"
     group: "root"
     mode: '0644'
-  tags:
-    # the sorting of interfaces and mounts
-    # is not idempotent
-    - molecule-idempotence-notest
+
+- name: remove /etc/update-motd.d
+  ansible.builtin.file:
+    path: "/etc/update-motd.d"
+    state: absent
+  when:
+    - motd_remove_dynamic_motd | bool

@@ -50,6 +50,19 @@ These variables are set in `defaults/main.yml`:
 #   Mount: /dev/mapper/luks-XXX(/etc/hostname)(X.XGB)
 #
 # ---------------------------------------------------------------
+
+# Remove the folder /etc/update-motd.d
+motd_remove_dynamic_motd: true
+
+# Interface filter
+motd_interfaces_startswith:
+  # - "lo"
+  - "eth"
+  - "ens"
+  - "eno"
+  - "vmbr"
+  - "wg"
+  - "wire"
 ```
 
 
