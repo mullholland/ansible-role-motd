@@ -32,31 +32,33 @@ Network:
 
 {% if ansible_interfaces is defined %}
 Interfaces:
-{%   for int in ansible_interfaces %}
+{%   for int in ansible_interfaces | sort %}
+{%-    if int is search(motd_interfaces_startswith|join('|')) %}
   Interface: {{ int }}
-{%     if hostvars[inventory_hostname]['ansible_'+int] is defined %}
-{%       if hostvars[inventory_hostname]['ansible_'+int]['ipv4'] is defined %}
-{%         if hostvars[inventory_hostname]['ansible_'+int]['ipv4']['address'] is defined %}
+{%       if hostvars[inventory_hostname]['ansible_'+int] is defined %}
+{%         if hostvars[inventory_hostname]['ansible_'+int]['ipv4'] is defined %}
+{%           if hostvars[inventory_hostname]['ansible_'+int]['ipv4']['address'] is defined %}
     ip: {{ hostvars[inventory_hostname]['ansible_'+int]['ipv4']['address'] }}
-{%         endif %}
-{%       endif %}
-{%       if hostvars[inventory_hostname]['ansible_'+int]['macaddress'] is defined %}
-    mac: {{ hostvars[inventory_hostname]['ansible_'+int]['macaddress'] }}
-{%       endif %}
-{%       if hostvars[inventory_hostname]['ansible_'+int]['ipv4_secondaries'] is defined %}
-    secondary:
-{%         for sip in hostvars[inventory_hostname]['ansible_'+int]['ipv4_secondaries'] %}
-{%           if sip['address'] is defined %}
-      ip: {{ sip['address'] }}
 {%           endif %}
-{%         endfor %}
+{%         endif %}
+{%         if hostvars[inventory_hostname]['ansible_'+int]['macaddress'] is defined %}
+    mac: {{ hostvars[inventory_hostname]['ansible_'+int]['macaddress'] }}
+{%         endif %}
+{%         if hostvars[inventory_hostname]['ansible_'+int]['ipv4_secondaries'] is defined %}
+    secondary:
+{%           for sip in hostvars[inventory_hostname]['ansible_'+int]['ipv4_secondaries'] %}
+{%             if sip['address'] is defined %}
+      ip: {{ sip['address'] }}
+{%             endif %}
+{%           endfor %}
+{%         endif %}
 {%       endif %}
 {%     endif %}
 {%   endfor %}
 {% endif %}
 
 Mounts:
-{% for mnt in ansible_mounts %}
+{% for mnt in ansible_mounts | sort(attribute='device') %}
 {%   if mnt.size_total != none %}
   Mount: {{ mnt.device }}({{ mnt.mount }})({{ (mnt.size_total / 1024 / 1024 / 1024)| round(1) }}GB)
 {%   endif %}
