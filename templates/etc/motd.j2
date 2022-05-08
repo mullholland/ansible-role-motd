@@ -58,7 +58,7 @@ Interfaces:
 {% endif %}
 
 Mounts:
-{% for mnt in ansible_mounts | sort %}
+{% for mnt in ansible_mounts | sort(attribute='device') %}
 {%   if mnt.size_total != none %}
   Mount: {{ mnt.device }}({{ mnt.mount }})({{ (mnt.size_total / 1024 / 1024 / 1024)| round(1) }}GB)
 {%   endif %}
