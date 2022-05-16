@@ -24,10 +24,10 @@ System:
 
 Network:
 {% if ansible_dns.search is defined %}
-  DNS Search:    {{ ansible_dns.search|join (" ") }}
+  DNS Search:    {{ ansible_dns.search | sort | join (" ") }}
 {% endif %}
 {% if ansible_dns.nameservers is defined %}
-  DNS Server(s): {{ ansible_dns.nameservers|join (" ") }}
+  DNS Server(s): {{ ansible_dns.nameservers | sort | join (" ") }}
 {% endif %}
 
 {% if ansible_interfaces is defined %}

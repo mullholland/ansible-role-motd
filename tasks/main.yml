@@ -13,6 +13,6 @@
     state: absent
   when:
     - motd_remove_dynamic_motd | bool
-  # jinja tempalting is not always idempotent
+  # jinja templating is not always idempotent
   tags:
     - molecule-idempotence-notest
