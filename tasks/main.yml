@@ -6,6 +6,9 @@
     owner: "root"
     group: "root"
     mode: '0644'
+  # jinja templating is not always idempotent
+  tags:
+    - molecule-idempotence-notest
 
 - name: remove /etc/update-motd.d
   ansible.builtin.file:
@@ -13,6 +16,3 @@
     state: absent
   when:
     - motd_remove_dynamic_motd | bool
-  # jinja templating is not always idempotent
-  tags:
-    - molecule-idempotence-notest
