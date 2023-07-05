@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: Creates a motd for Linux systems.
+  homepage: https://mullholland.net
+  topics: system, ansible, molecule, tox, playbook
