@@ -1,5 +1,5 @@
 ---
-- name: create motd
+- name: Create motd
   ansible.builtin.template:
     src: "etc/motd.j2"
     dest: "/etc/motd"
@@ -10,7 +10,7 @@
   tags:
     - molecule-idempotence-notest
 
-- name: remove /etc/update-motd.d
+- name: Remove /etc/update-motd.d
   ansible.builtin.file:
     path: "/etc/update-motd.d"
     state: absent
